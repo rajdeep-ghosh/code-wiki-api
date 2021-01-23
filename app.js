@@ -17,4 +17,13 @@ mongoose.connect('mongodb://localhost:27017/wikiDB', {useNewUrlParser: true, use
     }
 });
 
+// Create article schema
+const articleSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
+
+// Create article model
+const Article = mongoose.model("Article", articleSchema);
+
 app.listen(3000, () => {console.log("Server started");});
