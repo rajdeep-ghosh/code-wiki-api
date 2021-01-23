@@ -8,4 +8,13 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Connect MongoDB at default port 27017.
+mongoose.connect('mongodb://localhost:27017/wikiDB', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}, (err) => {
+    if (!err) {
+        console.log('MongoDB Connection Succeeded.')
+    } else {
+        console.log('Error in DB connection: ' + err)
+    }
+});
+
 app.listen(3000, () => {console.log("Server started");});
