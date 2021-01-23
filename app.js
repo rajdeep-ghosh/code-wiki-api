@@ -36,4 +36,18 @@ app.get("/articles", (req, res) => {
     });
 });
 
+app.post("/articles", (req, res) => {
+    const article = new Article({
+        title: req.body.title,
+        content: req.body.content
+    });
+    article.save((err) => {
+        if (!err) {
+            res.send("Successfully saved a new article");
+        } else {
+            res.send(err);
+        }
+    });
+});
+
 app.listen(3000, () => {console.log("Server started");});
