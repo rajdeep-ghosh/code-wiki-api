@@ -106,6 +106,16 @@ app.route("/articles/:articleTitle")
                 }
             }
         );
+    })
+
+    .delete((req, res) => {
+        Article.deleteOne({title: req.params.articleTitle}, (err) => {
+            if (!err) {
+                res.send("Successfully deleted");
+            } else {
+                res.send(err);
+            }
+        });
     });
 
 app.listen(3000, () => {console.log("Server started");});
