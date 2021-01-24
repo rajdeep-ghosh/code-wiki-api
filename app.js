@@ -78,6 +78,20 @@ app.route("/articles/:articleTitle")
                 res.send(err);
             }
         });
+    })
+
+    .put((req, res) => {
+        Article.replaceOne(
+            {title: req.params.articleTitle}, 
+            {title: req.body.title, content: req.body.content}, 
+            {overwrite: true}, 
+            (err) => {
+            if (!err) {
+                res.send("Successfully updated article.");
+            } else {
+                res.send(err)
+            }
+        });
     });
 
 app.listen(3000, () => {console.log("Server started");});
